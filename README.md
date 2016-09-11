@@ -24,7 +24,7 @@ cd box
 vagrant up
 ```
 
-Your Titan instance is runing at http://localhost:8090. To access, use "**admin**" as login and password.
+Your Titan instance is running at http://localhost:8090. To access, use "**admin**" as login and password.
 
 Now, you can modify the base-code to implement your requirements.
 
