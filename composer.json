@@ -7,6 +7,34 @@
 		{
 			"name": "Camilo Carromeu",
 			"email": "camilo@carromeu.com"
+		},
+		{
+			"name": "Hercules da Costa Sandim",
+			"email": "herculessandim@gmail.com"
+		},
+		{
+			"name": "Humberto Rafael Henrique Pereira",
+			"email": "begnini@gmail.com"
+		},
+		{
+			"name": "Marcelo Augusto Santos Turine",
+			"email": "mturine@gmail.com"
+		},
+		{
+			"name": "Marcio Aparecido Inácio da Silva",
+			"email": "mapsiva@gmail.com"
+		},
+		{
+			"name": "Maxwell Sampaio dos Santos",
+			"email": "maxs.santos@gmail.com"
+		},
+		{
+			"name": "Rodrigo Coin Curvo",
+			"email": "rodrigoccurvo@gmail.com"
+		},
+		{
+			"name": "Vitor Mesaque Alves de Lima",
+			"email": "vitormesaque@gmail.com"
 		}
 	],
 	"minimum-stability": "stable",

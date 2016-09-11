@@ -10,7 +10,23 @@ Titan was developed and is maintained by the partnership between the [Software E
 Getting Started
 ---------------
 
+To create your project, use [Composer](http://getcomposer.org):
 
+```bash
+php composer.phar create-project titan-framework/instance path/to/local/folder
+```
+
+After install, start Vagrant box to run your application:
+
+```bash
+cd path/to/local/folder
+cd box
+vagrant up
+```
+
+Your Titan instance is runing at http://localhost:8090. To access, use "**admin**" as login and password.
+
+Now, you can modify the base-code to implement your requirements.
 
 More Information
 ----------------
