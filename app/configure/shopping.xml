@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pay-mapping>
+	<gateway
+		driver="PagSeguro"
+		account="camilo@carromeu.com"
+		token=""
+		user-view="shopping.pagseguro"
+		active="true"
+		default="true"
+	/>
+	
+	<gateway
+		driver="PagSeguro"
+		account="alice@carromeu.com"
+		token=""
+		user-view="shopping.pagseguro"
+		active="true"
+	/>
+</pay-mapping>

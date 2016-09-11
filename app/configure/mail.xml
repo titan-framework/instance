@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mail-mapping>
+	<register>
+		<subject>[NAME] - Cadastro de Senha</subject>
+		<text>
+Olá [USER],
+
+Você está recebendo este e-mail pois se cadastrou (ou foi cadastrado) no [NAME].
+
+Se você não fez e desconhece qualquer requisição de registro para uso deste sistema, por favor, desconsidere este e-mail.
+
+Para efetivar agora mesmo seu cadastro no sistema, clique no link abaixo (ou copie e cole em seu navegador):
+
+[LINK]
+
+Sem mais,
+
+Equipe [NAME]
+		</text>
+	</register>
+	<forgot>
+		<subject>[NAME] - Recadastro de Senha</subject>
+		<text>
+Olá [USER],
+
+Você está recebendo este e-mail pois solicitou a mudança de senha no [NAME].
+
+Se você não fez nenhuma requisição de recadastramento de senha, por favor, desconsidere este e-mail.
+
+Para efetuar agora mesmo a escolha de sua nova senha, clique no link abaixo (ou copie e cole em seu navegador):
+
+[LINK]
+
+Sem mais,
+
+Equipe [NAME]
+		</text>
+	</forgot>
+</mail-mapping>

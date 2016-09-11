@@ -1,0 +1,16 @@
+{
+	"name": "titan-framework/instance",
+	"description": "Basic source and directory structure to create a new instance of Titan Framework.",
+	"type": "project",
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Camilo Carromeu",
+			"email": "camilo@carromeu.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=5.3.3"
+	}
+}

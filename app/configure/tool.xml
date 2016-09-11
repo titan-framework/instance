@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool-mapping>
+	<!-- <tool name="MyTool" bootstrap="local/tool/myInstance.MyTool/bootstrap.php" /> -->
+</tool-mapping>

@@ -1,0 +1,8 @@
+# /etc/cron.d/titan: crontab fragment for Titan Framework
+#
+# Auto-update de instancias
+# Parametrizar a chamada com o caminho para as instancias a serem atualizadas
+#
+# Ex.: php /var/www/titan/update/update.php /var/www/app/projeto1 /var/www/app/projeto2 > /var/www/log/auto-update.log
+#
+*/5 * * * * root /usr/bin/php /var/www/titan/update/update.php > /var/www/log/auto-update.log

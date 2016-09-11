@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<social-mapping>
+	<social
+		driver="Facebook"
+		register-as="manager"
+		auto-register="true"
+		auth-id=""
+		auth-secret="">
+		<attribute name="username" column="_login" />
+		<attribute name="name" column="_name" />
+		<attribute name="email" column="_email" permission="email" />
+		<attribute name="timezone" column="_timezone" />
+		<attribute name="locale" column="_language" />
+		<attribute name="birthday" column="birth_date" permission="user_birthday" />
+		<attribute name="gender" column="gender" />
+		<attribute name="picture" column="photo" />
+		<attribute name="website" column="url" permission="user_website" />
+		<attribute name="relationship_status" column="marriage" permission="user_relationships" />
+		<!--
+		<attribute name="link" column="facebook" />
+		<attribute name="hometown" column="" permission="user_hometown" />
+		<attribute name="bio" column="" permission="user_about_me" />
+		-->
+	</social>
+	
+	<social
+		driver="Google"
+		register-as="manager"
+		auto-register="true"
+		auth-id=""
+		auth-secret="">
+		<attribute name="name" column="_name" />
+		<attribute name="email" column="_email" permission="email" />
+		<attribute name="locale" column="_language" />
+		<attribute name="birthday" column="birth_date" permission="user_birthday" />
+		<attribute name="gender" column="gender" />
+		<attribute name="picture" column="photo" />
+		<!--
+		<attribute name="link" column="gplus" />
+		-->
+	</social>
+</social-mapping>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<titan-configuration
+	name="Your Titan Instance"
+	description=""
+	url="http://localhost:8090/"
+	e-mail="your@e-mail.com"
+	login-url="http://localhost:8090/titan.php?target=login"
+	core-path="../titan/"
+	cache-path="cache/"
+	doc-path="doc/"
+	debug-mode="true"
+	session="_PUT_A_RANDOM_HASH_HERE_"
+	language="pt_BR, en_US"
+	use-chat="false"
+	all-sections="true">
+
+	<database
+		sgbd="PostgreSQL"
+		host="localhost"
+		name="instance"
+		user="titan"
+		port="5432"
+		password=""
+		schema="titan"
+	/>
+
+	<security
+		xml-path="configure/security.xml"
+		hash="_PUT_A_RANDOM_HASH_HERE_"
+		timeout="1800"
+	/>
+
+	<search
+		hash="_PUT_A_RANDOM_HASH_HERE_"
+		timeout="15552000"
+	/>
+
+	<archive
+		xml-path="configure/archive.xml"
+		data-path="file/"
+	/>
+
+	<business-layer
+		xml-path="configure/business.xml"
+	/>
+
+	<skin
+		logo=""
+	/>
+
+	<mail
+		xml-path="configure/mail.xml"
+	/>
+
+	<version-control
+		schema="version"
+	/>
+
+	<log
+		db-path="cache/log.db"
+		xml-path="configure/log.xml"
+	/>
+
+	<!--
+	<type
+		xml-path="configure/type.xml"
+		no-legacy-level="2"
+	/>
+
+	<attribute
+		xml-path="configure/attribute.xml"
+	/>
+
+	<tool
+		xml-path="configure/tool.xml"
+	/>
+
+	<social
+		xml-path="configure/social.xml"
+	/>
+
+	<api
+		xml-path="configure/api.xml"
+	/>
+
+	<shopping
+		currency="BRL"
+		xml-path="configure/shopping.xml"
+	/>
+	-->
+
+	<lucene
+		index-path="cache/lucene"
+	/>
+
+	<schedule
+		hash=""
+	/>
+
+	<alert
+		xml-path="configure/alert.xml"
+	/>
+
+	<friendly-url
+		change-password="password"
+		disable-alerts="alert"
+		rss="rss"
+	/>
+
+	<backup
+		path="backup/"
+		validity="86400"
+		timeout="86400"
+	/>
+</titan-configuration>

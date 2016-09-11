@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section-mapping>
+	<section 
+		label="Home | pt_BR: Página Inicial"
+		name="home"
+		component="global.home"
+		default="true"
+	/>
+	
+	<section 
+		label="Base of Files | pt_BR: Banco de Arquivos"
+		name="archive"
+		component="global.archive"
+	/>
+	
+	<section 
+		label="Access Control | pt_BR: Controle de Acesso"
+		name="access"
+		component="global.group"
+		admin="true"
+	/>
+	
+	<section 
+		label="Managers Users | pt_BR: Usuários Gestores"
+		name="manager"
+		component="global.userPrivate"
+		father="access"
+	/>
+</section-mapping>
