@@ -14,8 +14,8 @@ echo "Done!"
 echo "Updating, upgrading and dist upgrading..."
 
 apt-get -y update
-#apt-get -y upgrade
-#apt-get -y dist-upgrade
+apt-get -y upgrade
+apt-get -y dist-upgrade
 
 echo "Done!"
 

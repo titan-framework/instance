@@ -1,3 +1,5 @@
 app/backup
 app/cache
 app/file
+box/.vagrant
+box/vagrant.log

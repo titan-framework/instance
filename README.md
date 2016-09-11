@@ -10,7 +10,9 @@ Titan was developed and is maintained by the partnership between the [Software E
 Getting Started
 ---------------
 
+
+
 More Information
 ----------------
 
-Read [Titan Cookbook](document/Cookbook.pdf) (*in portuguese*) is the best way for you to start using it. You can also access our [mailing list](https://groups.google.com/forum/#!forum/titan-framework) to learn advanced features and answer questions.
+Read [Titan Cookbook](document/Cookbook.pdf) (*in portuguese*) is the best way to start using it. You can also access our [mailing list](https://groups.google.com/forum/#!forum/titan-framework) to learn advanced features and answer questions.
