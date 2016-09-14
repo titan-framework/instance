@@ -6,7 +6,9 @@
 	"authors": [
 		{
 			"name": "Camilo Carromeu",
-			"email": "camilo@carromeu.com"
+			"email": "camilo@carromeu.com",
+			"homepage": "http://pandora.cnpgc.embrapa.br/staff/Camilo-Carromeu",
+			"role": "Developer"
 		}
 	],
 	"minimum-stability": "stable",
