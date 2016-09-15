@@ -24,7 +24,7 @@ echo "Install a lot of dependencies..."
 echo "postfix postfix/mailname string localhost" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y vim mailutils ntpdate build-essential bzip2 subversion apache2 postfix php5 php5-pgsql php5-gd php5-imagick php5-sqlite php5-cli php5-curl php5-mcrypt php5-ldap php-pear php5-dev php-apc php5-svn xpdf-utils antiword openjdk-7-jre locales locate postgresql-9.4 git-core
+DEBIAN_FRONTEND=noninteractive apt-get install -y vim mailutils ntpdate build-essential bzip2 subversion apache2 postfix php5 php5-pgsql php5-gd php5-imagick php5-sqlite php5-cli php5-curl php5-mcrypt php5-ldap php-pear php5-dev php-apc php5-svn xpdf-utils antiword openjdk-7-jre locales locate postgresql-9.4 git
 
 echo "Done!"
 
