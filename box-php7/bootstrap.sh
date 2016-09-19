@@ -11,11 +11,15 @@ EOF
 
 echo "Done!"
 
+export DEBIAN_FRONTEND=noninteractive
+
 echo "Updating, upgrading and dist upgrading..."
 
 apt-get -y update
+
+apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
+
 apt-get -y upgrade
-apt-get -y dist-upgrade
 
 echo "Done!"
 
@@ -24,7 +28,7 @@ echo "Install a lot of dependencies..."
 echo "postfix postfix/mailname string localhost" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y antiword apache2 build-essential bzip2 curl git locales locate mailutils ntpdate openjdk-7-jre postgresql-9.4 php5 php-apc php5-cli php5-curl php5-dev php5-gd php5-imagick php5-ldap php5-mcrypt php-pear php5-pgsql php5-sqlite php5-svn postfix subversion xpdf-utils vim
+apt-get install -y antiword aptitude build-essential bzip2 curl git locales locate mailutils nginx ntpdate openjdk-9-jre php7.0-fpm php7.0-cli php7.0-curl php7.0-dev php7.0-gd php-imagick php7.0-ldap php7.0-mcrypt php-pear php7.0-pgsql php7.0-sqlite postfix subversion xpdf-utils unzip vim
 
 echo "Done!"
 
@@ -37,6 +41,12 @@ locale-gen "pt_BR.UTF-8"
 echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
 
 dpkg-reconfigure --frontend=noninteractive locales
+
+echo "Done!"
+
+echo "Installing PostgreSQL..."
+
+apt-get install -y postgresql-9.5
 
 echo "Done!"
 
@@ -70,31 +80,27 @@ echo "Configuring services..."
 
 echo "PostgreSQL..."
 
-cp -f /vagrant/settings/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
+cp -f /vagrant/settings/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
 
-cp -f /vagrant/settings/postgresql.conf /etc/postgresql/9.4/main/postgresql.conf
+cp -f /vagrant/settings/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf
 
 /etc/init.d/postgresql restart
 
 echo "Done!"
 
-echo "Apache and PHP..."
+echo "Nginx and PHP..."
 
-cp -f /vagrant/settings/php_web.ini /etc/php5/apache2/php.ini
+cp -f /vagrant/settings/php-fpm.ini /etc/php/7.0/fpm/php.ini
 
-cp -f /vagrant/settings/php_cli.ini /etc/php5/cli/php.ini
+cp -f /vagrant/settings/php-cli.ini /etc/php/7.0/cli/php.ini
 
 rm -rf /var/www/html
 
 mkdir -p /var/www/log
 
-cp -f /vagrant/settings/apache2.conf /etc/apache2/apache2.conf
+cp -f /vagrant/settings/nginx-default /etc/nginx/sites-available/default
 
-cp -f /vagrant/settings/000-default.conf /etc/apache2/sites-available/000-default.conf
-
-a2enmod rewrite
-
-/etc/init.d/apache2 restart
+/etc/init.d/nginx restart
 
 echo "Done!"
 
@@ -135,7 +141,7 @@ su - postgres -c "psql -d instance -U titan < db/last.sql" > /vagrant/vagrant.lo
 
 echo "Done!"
 
-echo "Runnig 'updatedb' command (for locate)..."
+echo "Making updatedb command..."
 
 updatedb
 

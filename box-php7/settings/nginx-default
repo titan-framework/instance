@@ -1,0 +1,71 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	
+	root /var/www/app;
+
+	index index.html index.htm index.nginx-debian.html index.php;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+		fastcgi_buffers 48 4k;
+		fastcgi_buffer_size 32k;
+	}
+	
+	location ~ /(cache/parsed|cache/log|extra|update|configure) {
+		deny all;
+		return 403;
+	}
+
+	location ~* \.(git|svn|db|rb|lock|pem|pub|rsa|key|json|log|db|monolog|env|sh|conf|ini|yml|xml|vagrant)$ {
+		deny all;
+		return 403;
+	}
+	
+	location /password {
+		rewrite ^/password\/([^\/]+)\/([0-9a-zA-Z_\-]+)\/?$ /titan.php?target=redirect&url=titan.php?target=remakePasswd&login=$1&hash=$2 last;
+	}
+	
+	location /alert {
+		rewrite ^/alert\/([^\/]+)\/([0-9a-zA-Z_\-]+)\/?$ /titan.php?target=redirect&url=titan.php?target=disableAlerts&login=$1&hash=$2 last;
+	}
+	
+	location /go {
+		rewrite ^/go\/([a-zA-Z0-9_\-\.]+)\/?([a-zA-Z0-9_\-\.]*)\/?([0-9]*)\/?$ /titan.php?target=redirect&url=titan.php?toSection=$1&toAction=$2&itemId=$3 last;
+	}
+	
+	location /download {
+		rewrite ^/download\/([0-9]+)\/?$ /titan.php?target=openFile&fileId=$1 last;
+	}
+	
+	location /image {
+		rewrite ^/image\/([0-9]+).png$ /titan.php?target=openFile&fileId=$1 last;
+	}
+	
+	location /photo {
+		rewrite ^/photo\/([0-9]+)_([0-9]+)x([0-9]+)_(0|1).jpg$ /titan.php?target=openFile&fileId=$1&width=$2&height=$3&bw=$4 last;
+	}
+	
+	location /thumb {
+		rewrite ^/thumb\/([0-9]+)_([0-9]+)x([0-9]+).jpg$ /titan.php?target=viewThumb&fileId=$1&width=$2&height=$3 last;
+	}
+	
+	location /resource {
+		rewrite ^/resource\/([a-zA-Z0-9_\-\.]+)\/([a-zA-Z0-9_\-\.\/]+).(css|jpg|jpeg|gif|png|js|ico)$ /titan.php?target=resource&toSection=$1&file=$2.$3 last;
+	}
+	
+	location /api {
+		rewrite ^/api\/([a-zA-Z0-9_\-\.\/\%]+)$ /titan.php?target=api&uri=$1 last;
+	}
+	
+	location /rss {
+		rewrite ^/rss\/([a-zA-Z0-9_\-\.]+)\/?$ /titan.php?target=rss&toSection=$1 last;
+	}
+}
