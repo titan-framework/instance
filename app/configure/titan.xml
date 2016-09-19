@@ -61,6 +61,10 @@
 		xml-path="configure/log.xml"
 	/>
 
+	<type
+		no-legacy-level="2"
+	/>
+
 	<!--
 	<type
 		xml-path="configure/type.xml"
