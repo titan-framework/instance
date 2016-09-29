@@ -80,9 +80,9 @@ echo "Configuring services..."
 
 echo "PostgreSQL..."
 
-cp -f /vagrant/settings/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+cp -f /vagrant/box/php7/settings/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
 
-cp -f /vagrant/settings/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf
+cp -f /vagrant/box/php7/settings/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf
 
 /etc/init.d/postgresql restart
 
@@ -90,15 +90,15 @@ echo "Done!"
 
 echo "Nginx and PHP..."
 
-cp -f /vagrant/settings/php-fpm.ini /etc/php/7.0/fpm/php.ini
+cp -f /vagrant/box/php7/settings/php-fpm.ini /etc/php/7.0/fpm/php.ini
 
-cp -f /vagrant/settings/php-cli.ini /etc/php/7.0/cli/php.ini
+cp -f /vagrant/box/php7/settings/php-cli.ini /etc/php/7.0/cli/php.ini
 
 rm -rf /var/www/html
 
 mkdir -p /var/www/log
 
-cp -f /vagrant/settings/nginx-default /etc/nginx/sites-available/default
+cp -f /vagrant/box/php7/settings/nginx-default /etc/nginx/sites-available/default
 
 /etc/init.d/nginx restart
 
@@ -106,7 +106,7 @@ echo "Done!"
 
 echo "SSH..."
 
-cp -f /vagrant/settings/sshd_config /etc/ssh/sshd_config
+cp -f /vagrant/box/php7/settings/sshd_config /etc/ssh/sshd_config
 
 /etc/init.d/ssh restart
 
@@ -114,7 +114,7 @@ echo "Done!"
 
 echo "CRON..."
 
-cp /vagrant/settings/cron /etc/cron.d/titan
+cp /vagrant/box/php7/settings/cron /etc/cron.d/titan
 
 /etc/init.d/cron reload
 /etc/init.d/cron restart
