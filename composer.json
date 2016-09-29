@@ -13,9 +13,9 @@
 	],
 	"minimum-stability": "stable",
 	"require": {
-		"php": ">=5.2,<7.0"
+		"php": ">=5.2"
 	},
 	"config": {
-		"vendor-dir": "app/vendor"
+		"vendor-dir": "vendor"
 	}
 }

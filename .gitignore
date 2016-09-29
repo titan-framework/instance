@@ -1,6 +1,6 @@
-app/backup
-app/cache
-app/file
-app/vendor
-box/.vagrant
-box/vagrant.log
+backup
+cache
+file
+vendor
+.vagrant
+vagrant.log

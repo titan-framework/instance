@@ -70,9 +70,9 @@ echo "Configuring services..."
 
 echo "PostgreSQL..."
 
-cp -f /vagrant/settings/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
+cp -f /vagrant/box/php5/settings/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 
-cp -f /vagrant/settings/postgresql.conf /etc/postgresql/9.4/main/postgresql.conf
+cp -f /vagrant/box/php5/settings/postgresql.conf /etc/postgresql/9.4/main/postgresql.conf
 
 /etc/init.d/postgresql restart
 
@@ -80,17 +80,17 @@ echo "Done!"
 
 echo "Apache and PHP..."
 
-cp -f /vagrant/settings/php_web.ini /etc/php5/apache2/php.ini
+cp -f /vagrant/box/php5/settings/php_web.ini /etc/php5/apache2/php.ini
 
-cp -f /vagrant/settings/php_cli.ini /etc/php5/cli/php.ini
+cp -f /vagrant/box/php5/settings/php_cli.ini /etc/php5/cli/php.ini
 
 rm -rf /var/www/html
 
 mkdir -p /var/www/log
 
-cp -f /vagrant/settings/apache2.conf /etc/apache2/apache2.conf
+cp -f /vagrant/box/php5/settings/apache2.conf /etc/apache2/apache2.conf
 
-cp -f /vagrant/settings/000-default.conf /etc/apache2/sites-available/000-default.conf
+cp -f /vagrant/box/php5/settings/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 a2enmod rewrite
 
@@ -100,7 +100,7 @@ echo "Done!"
 
 echo "SSH..."
 
-cp -f /vagrant/settings/sshd_config /etc/ssh/sshd_config
+cp -f /vagrant/box/php5/settings/sshd_config /etc/ssh/sshd_config
 
 /etc/init.d/ssh restart
 
@@ -108,7 +108,7 @@ echo "Done!"
 
 echo "CRON..."
 
-cp /vagrant/settings/cron /etc/cron.d/titan
+cp /vagrant/box/php5/settings/cron /etc/cron.d/titan
 
 /etc/init.d/cron reload
 /etc/init.d/cron restart
