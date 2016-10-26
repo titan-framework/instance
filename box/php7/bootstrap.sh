@@ -52,7 +52,7 @@ echo "Done!"
 
 echo "Installing PHP Composer..."
 
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 echo "Done!"
 
@@ -73,6 +73,12 @@ echo "Creating folders to instance (file, backup and cache)..."
 mkdir -p /var/www/app/file
 mkdir -p /var/www/app/cache
 mkdir -p /var/www/app/backup
+
+echo "Done!"
+
+echo "Installing composer dependencies..."
+
+composer install -d /var/www/app
 
 echo "Done!"
 
@@ -141,7 +147,23 @@ su - postgres -c "psql -d instance -U titan < db/last.sql" > /vagrant/vagrant.lo
 
 echo "Done!"
 
-echo "Making updatedb command..."
+echo "Installing Mailhog..."
+
+wget --quiet -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64
+
+chmod +x /usr/local/bin/mailhog
+
+cp -f /vagrant/box/php7/settings/mailhog /etc/init.d/
+
+chmod +x /etc/init.d/mailhog
+
+update-rc.d mailhog defaults
+
+service mailhog start
+
+echo "Done!"
+
+echo "Runnig 'updatedb' command (for locate)..."
 
 updatedb
 

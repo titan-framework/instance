@@ -42,7 +42,7 @@ echo "Done!"
 
 echo "Installing PHP Composer..."
 
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 echo "Done!"
 
@@ -66,6 +66,12 @@ mkdir -p /var/www/app/backup
 
 echo "Done!"
 
+echo "Installing composer dependencies..."
+
+composer install -d /var/www/app
+
+echo "Done!"
+
 echo "Configuring services..."
 
 echo "PostgreSQL..."
@@ -80,9 +86,9 @@ echo "Done!"
 
 echo "Apache and PHP..."
 
-cp -f /vagrant/box/php5/settings/php_web.ini /etc/php5/apache2/php.ini
+cp -f /vagrant/box/php5/settings/php-web.ini /etc/php5/apache2/php.ini
 
-cp -f /vagrant/box/php5/settings/php_cli.ini /etc/php5/cli/php.ini
+cp -f /vagrant/box/php5/settings/php-cli.ini /etc/php5/cli/php.ini
 
 rm -rf /var/www/html
 
@@ -132,6 +138,22 @@ su - postgres -c "createuser -E titan" > /vagrant/vagrant.log
 su - postgres -c "createdb -E utf8 -O titan -T template0 instance" > /vagrant/vagrant.log
 
 su - postgres -c "psql -d instance -U titan < db/last.sql" > /vagrant/vagrant.log
+
+echo "Done!"
+
+echo "Installing Mailhog..."
+
+wget --quiet -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64
+
+chmod +x /usr/local/bin/mailhog
+
+cp -f /vagrant/box/php5/settings/mailhog /etc/init.d/
+
+chmod +x /etc/init.d/mailhog
+
+update-rc.d mailhog defaults
+
+service mailhog start
 
 echo "Done!"
 
