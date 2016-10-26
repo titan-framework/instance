@@ -33,3 +33,8 @@ More Information
 ----------------
 
 Read [Titan Cookbook](https://github.com/titan-framework/docs/raw/master/Cookbook.pdf) (*in portuguese*) is the best way to start using it. You can also access our [mailing list](https://groups.google.com/forum/#!forum/titan-framework) to learn advanced features and answer questions.
+
+Troubleshoot
+------------
+
+* If after "vagrant up" you receive a error of Titan's CORE not found, try pause your antvirus, destroy VM (with "vagrant destroy") and make up again (I had problems with Kaspersky).
