@@ -24,7 +24,9 @@ cd box
 vagrant up
 ```
 
-Your Titan instance is running at http://localhost:8090. To access, use "**admin**" as login and password.
+Your Titan instance is running at **http://localhost:8090**. To access, use "**admin**" as login and password.
+
+All mail messages is getted by [MailHog](https://github.com/mailhog/MailHog), and you can access at **http://localhost:8025**.
 
 Now, you can modify the base-code to implement your requirements.
 
