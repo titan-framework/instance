@@ -20,7 +20,6 @@ After install, start Vagrant box to run your application:
 
 ```bash
 cd path/to/local/folder
-cd box
 vagrant up
 ```
 
