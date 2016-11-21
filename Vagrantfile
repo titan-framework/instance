@@ -25,7 +25,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "192.168.33.10"
 
-  config.vm.synced_folder ".", "/var/www/app", type: "virtualbox"
+  if Vagrant::Util::Platform.windows? then
+      config.vm.synced_folder ".", "/var/www/app", type: "virtualbox"
+  else
+      config.vm.synced_folder ".", "/var/www/app", type: "virtualbox", :group => "www-data", :mount_options => ['dmode=775','fmode=664']
+  end
   config.vm.synced_folder "db", "/var/lib/postgresql/db", type: "virtualbox"
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
