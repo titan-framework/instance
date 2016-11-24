@@ -116,4 +116,9 @@
 		validity="86400"
 		timeout="86400"
 	/>
+
+	<update
+		environment="master"
+		backup="false"
+	/>
 </titan-configuration>

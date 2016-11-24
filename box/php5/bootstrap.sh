@@ -24,7 +24,7 @@ echo "Install a lot of dependencies..."
 echo "postfix postfix/mailname string localhost" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y antiword apache2 build-essential bzip2 curl git locales locate mailutils ntpdate openjdk-7-jre postgresql-9.4 php5 php-apc php5-cli php5-curl php5-dev php5-gd php5-imagick php5-ldap php5-mcrypt php-pear php5-pgsql php5-sqlite php5-svn postfix subversion xpdf-utils vim
+DEBIAN_FRONTEND=noninteractive apt-get install -y antiword apache2 build-essential bzip2 curl git libav-tools locales locate mailutils ntpdate openjdk-7-jre postgresql-9.4 php5 php-apc php5-cli php5-curl php5-dev php5-gd php5-imagick php5-ldap php5-mcrypt php-pear php5-pgsql php5-sqlite php5-svn postfix subversion xpdf-utils vim
 
 echo "Done!"
 
@@ -141,7 +141,7 @@ su - postgres -c "psql -d instance -U titan < db/last.sql" > /vagrant/vagrant.lo
 
 echo "Done!"
 
-echo "Installing Mailhog..."
+echo "Installing MailHog..."
 
 wget --quiet -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64
 
