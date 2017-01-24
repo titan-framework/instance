@@ -28,7 +28,7 @@ echo "Install a lot of dependencies..."
 echo "postfix postfix/mailname string localhost" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-apt-get install -y antiword aptitude build-essential bzip2 curl git libav-tools locales locate mailutils nginx ntpdate openjdk-9-jre php7.0-fpm php7.0-cli php7.0-curl php7.0-dev php7.0-gd php-imagick php7.0-ldap php7.0-mcrypt php-pear php7.0-pgsql php7.0-sqlite postfix subversion xpdf-utils unzip vim
+apt-get install -y antiword aptitude build-essential bzip2 curl git libav-tools locales locate mailutils nginx ntpdate openjdk-9-jre php7.0-fpm php7.0-cli php7.0-curl php7.0-dev php7.0-gd php-imagick php7.0-ldap php7.0-mbstring php7.0-mcrypt php-pear php7.0-pgsql php7.0-sqlite postfix subversion xpdf-utils unzip vim
 
 echo "Done!"
 
