@@ -141,6 +141,12 @@ su - postgres -c "psql -d instance -U titan < db/last.sql" > /vagrant/vagrant.lo
 
 echo "Done!"
 
+echo "Updating DB (applying changes on 'update/db' folder)..."
+
+/usr/bin/php /var/www/titan/update/db.php /var/www/app/
+
+echo "Done!"
+
 echo "Installing MailHog..."
 
 wget --quiet -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64
