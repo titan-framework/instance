@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <search table="log">
-	<field type="Phrase" column="user_name" label="Autor" />
-	<field type="Phrase" column="section_name" label="Seção" />
-	<field type="Phrase" column="action_name" label="Ação" />
-	<field type="Phrase" column="message" label="Conteúdo" />
-	<field type="Phrase" column="ip" label="IP" />
+	<field type="Phrase" column="user_name" label="Author | pt_BR: Autor | es_ES: Autor" />
+	<field type="Phrase" column="section_name" label="Section | pt_BR: Seção | es_ES: Sección" />
+	<field type="Phrase" column="action_name" label="Action | pt_BR: Ação | es_ES: Acción" />
+	<field type="Phrase" column="message" label="Content | pt_BR: Conteúdo | es_ES: Contenido" />
+	<field type="Phrase" column="ip" label="IP | pt_BR: IP | es_ES: IP" />
 </search>
-<view table="log" primary="id" paginate="50">
-	<field type="Phrase" column="user_name" label="Usuário" />
-	<field type="Date" column="date" label="Data" show-time="true" id="_DATE_" />
+<view table="log" primary="id" paginate="100">
+	<field type="Phrase" column="user_name" label="User | pt_BR: Usuário | es_ES: Usuario" />
+	<field type="Date" column="date" label="Date | pt_BR: Data | es_ES: Fecha" show-time="true" id="_DATE_" />
 	<order id="_DATE_" invert="true" />
-	<icon function="[ajax]" action="logView" image="view.gif" label="Visualizar Log" />
+	<icon function="[ajax]" action="logView" image="view.gif" label="View Log | pt_BR: Visualizar Log | es_ES: Ver registro" default="true" />
 </view>
