@@ -24,6 +24,9 @@ Processado em [_BENCHMARK_] segundos
 
 Browser:
 [_BROWSER_]
+
+More:
+[_MESSAGE_]
 	</activity>
 	<activity name="LOGOFF" label="Logoff de Usuários" message="Usuário [_USER_NAME_] ([_USER_LOGIN_]) efetuou logoff.">
 Data: [_DATE_]
@@ -37,6 +40,9 @@ Processado em [_BENCHMARK_] segundos
 
 Browser:
 [_BROWSER_]
+
+More:
+[_MESSAGE_]
 	</activity>
 	<activity name="CREATE" label="Criação de Itens" message="Item de [_SECTION_] criado.">
 Data: [_DATE_]
