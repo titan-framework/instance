@@ -6,3 +6,5 @@
 -- HH: Hour of day in 24h format with 2 digits (e.g., '13' for 1pm)
 -- II: Minutes with 2 digits (e.g., '57')
 -- XX: A sequence starting in '01' (e.g., '03' for third file commited in same minute)
+
+SELECT current_timestamp;

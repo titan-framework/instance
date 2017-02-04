@@ -11,15 +11,22 @@ EOF
 
 echo "Done!"
 
-export DEBIAN_FRONTEND=noninteractive
-
 echo "Updating, upgrading and dist upgrading..."
 
 apt-get -y update
-
-apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
-
 apt-get -y upgrade
+apt-get -y dist-upgrade
+
+echo "Done!"
+
+echo "Adding Dotdeb (http://dotdeb.org) to sources of APT..."
+
+echo "deb http://packages.dotdeb.org jessie all" | tee -a /etc/apt/sources.list.d/dotdeb.list
+echo "deb-src http://packages.dotdeb.org jessie all" | tee -a /etc/apt/sources.list.d/dotdeb.list
+
+wget -qO - http://www.dotdeb.org/dotdeb.gpg | apt-key add -
+
+apt-get -y update
 
 echo "Done!"
 
@@ -28,7 +35,7 @@ echo "Install a lot of dependencies..."
 echo "postfix postfix/mailname string localhost" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-apt-get install -y antiword aptitude build-essential bzip2 curl git libav-tools locales locate mailutils nginx ntpdate openjdk-9-jre php7.0-fpm php7.0-cli php7.0-curl php7.0-dev php7.0-gd php-imagick php7.0-ldap php7.0-mbstring php7.0-mcrypt php-pear php7.0-pgsql php7.0-sqlite postfix subversion xpdf-utils unzip vim
+DEBIAN_FRONTEND=noninteractive apt-get install -y antiword aptitude build-essential bzip2 curl default-jdk git libav-tools locales locate mailutils memcached nginx ntpdate php7.0-fpm php7.0-cli php7.0-curl php7.0-dev php7.0-gd php7.0-imagick php7.0-ldap php7.0-mbstring php7.0-mcrypt php7.0-memcached php7.0-pgsql php7.0-sqlite php-pear postfix postgresql-9.4 subversion xpdf-utils unzip vim
 
 echo "Done!"
 
@@ -41,12 +48,6 @@ locale-gen "pt_BR.UTF-8"
 echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
 
 dpkg-reconfigure --frontend=noninteractive locales
-
-echo "Done!"
-
-echo "Installing PostgreSQL..."
-
-apt-get install -y postgresql-9.5
 
 echo "Done!"
 
@@ -86,19 +87,27 @@ echo "Configuring services..."
 
 echo "PostgreSQL..."
 
-cp -f /vagrant/box/php7/settings/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+cp -f /vagrant/box/php7/settings/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 
-cp -f /vagrant/box/php7/settings/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf
+cp -f /vagrant/box/php7/settings/postgresql.conf /etc/postgresql/9.4/main/postgresql.conf
 
 /etc/init.d/postgresql restart
 
 echo "Done!"
 
-echo "Nginx and PHP..."
+echo "PHP 7.0 FPM..."
 
 cp -f /vagrant/box/php7/settings/php-fpm.ini /etc/php/7.0/fpm/php.ini
 
 cp -f /vagrant/box/php7/settings/php-cli.ini /etc/php/7.0/cli/php.ini
+
+cp -f /vagrant/box/php7/settings/php-www.conf /etc/php/7.0/fpm/pool.d/www.conf
+
+/etc/init.d/php7.0-fpm restart
+
+echo "Done!"
+
+echo "Nginx..."
 
 rm -rf /var/www/html
 
@@ -174,3 +183,13 @@ echo "Runnig 'updatedb' command (for locate)..."
 updatedb
 
 echo "All done!"
+
+echo "To access, use a SSH client to localhost:2222 with login 'root' and password 'vagrant'."
+
+echo "Titan instance is running at http://localhost:8090/"
+
+echo "All e-mail messages are catchered and can be accessed at http://localhost:8025/"
+
+echo "Thanks for using Titan Framework! Enjoy it ;-)"
+
+echo "More info at http://titanframework.com"

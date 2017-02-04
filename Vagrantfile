@@ -1,5 +1,5 @@
 
-required_plugins = %w(vagrant-vbguest)
+required_plugins = %w(vagrant-vbguest vagrant-timezone)
 
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
 if not plugins_to_install.empty?
@@ -12,11 +12,7 @@ if not plugins_to_install.empty?
 end
 
 Vagrant.configure("2") do |config|
-  # To activate...
-  # - PHP 7.0, use "bento/ubuntu-16.04".
-  # - PHP 5.6, use "debian/jessie64".
 
-  # config.vm.box = "bento/ubuntu-16.04"
   config.vm.box = "debian/jessie64"
 
   config.vm.network "forwarded_port", guest: 80, host: 8090
@@ -28,15 +24,20 @@ Vagrant.configure("2") do |config|
   if Vagrant::Util::Platform.windows? then
       config.vm.synced_folder ".", "/var/www/app", type: "virtualbox"
   else
-      config.vm.synced_folder ".", "/var/www/app", type: "virtualbox", :group => "www-data", :mount_options => ['dmode=775','fmode=664']
+      config.vm.synced_folder ".", "/var/www/app", type: "virtualbox", :group => "www-data", :mount_options => [ 'dmode=775', 'fmode=664' ]
   end
+  
   config.vm.synced_folder "db", "/var/lib/postgresql/db", type: "virtualbox"
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
+  if Vagrant.has_plugin?("vagrant-timezone")
+    config.timezone.value = :host
+  end
+  
   # To activate...
-  # - PHP 7.0, use "box/php7/bootstrap.sh".
-  # - PHP 5.6, use "box/php5/bootstrap.sh".
+  # - PHP 7.0 with Nginx, use "box/php7/bootstrap.sh".
+  # - PHP 5.6 with Apache, use "box/php5/bootstrap.sh".
 
-  # config.vm.provision "shell", path: "box/php7/bootstrap.sh"
-  config.vm.provision "shell", path: "box/php5/bootstrap.sh"
+  config.vm.provision "shell", path: "box/php7/bootstrap.sh"
+  # config.vm.provision "shell", path: "box/php5/bootstrap.sh"
 end
