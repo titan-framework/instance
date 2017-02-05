@@ -41,15 +41,15 @@ server {
 	}
 	
 	location /password {
-		rewrite ^/password\/([^\/]+)\/([0-9a-zA-Z_\-]+)\/?$ /titan.php?target=redirect&url=titan.php?target=remakePasswd&login=$1&hash=$2 last;
+		rewrite ^/password\/([^\/]+)\/([0-9a-zA-Z_\-]+)\/?$ /titan.php?target=redirect&url=titan.php?target=remakePasswd%26login=$1%26hash=$2 last;
 	}
 	
 	location /alert {
-		rewrite ^/alert\/([^\/]+)\/([0-9a-zA-Z_\-]+)\/?$ /titan.php?target=redirect&url=titan.php?target=disableAlerts&login=$1&hash=$2 last;
+		rewrite ^/alert\/([^\/]+)\/([0-9a-zA-Z_\-]+)\/?$ /titan.php?target=redirect&url=titan.php?target=disableAlerts%26login=$1%26hash=$2 last;
 	}
 	
 	location /go {
-		rewrite ^/go\/([a-zA-Z0-9_\-\.]+)\/?([a-zA-Z0-9_\-\.]*)\/?([0-9]*)\/?$ /titan.php?target=redirect&url=titan.php?toSection=$1&toAction=$2&itemId=$3 last;
+		rewrite ^/go\/([a-zA-Z0-9_\-\.]+)\/?([a-zA-Z0-9_\-\.]*)\/?([0-9]*)\/?$ /titan.php?target=redirect&url=titan.php?toSection=$1%26toAction=$2%26itemId=$3 last;
 	}
 	
 	location /download {
