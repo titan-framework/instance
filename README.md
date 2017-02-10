@@ -32,7 +32,7 @@ Now, you can modify the base-code to implement your requirements.
 More Information
 ----------------
 
-Read [Titan Cookbook](https://github.com/titan-framework/docs/raw/master/Cookbook.pdf) (*in portuguese*) is the best way to start using it. You can also access our [mailing list](https://groups.google.com/forum/#!forum/titan-framework) to learn advanced features and answer questions.
+Read [official documentation](http://www.titanframework.com/docs/preface/) and [Titan Cookbook](https://github.com/titan-framework/docs/raw/master/Cookbook.pdf) (*in portuguese*) are the best ways to start using it. Access our [mailing list](https://groups.google.com/forum/#!forum/titan-framework) to learn advanced features and answer questions.
 
 Troubleshoot
 ------------
