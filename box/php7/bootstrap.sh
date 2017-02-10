@@ -95,6 +95,14 @@ cp -f /vagrant/box/php7/settings/postgresql.conf /etc/postgresql/9.4/main/postgr
 
 echo "Done!"
 
+echo "Memcached..."
+
+cp -f /vagrant/box/php7/settings/memcached.conf /etc/memcached.conf
+
+/etc/init.d/memcached restart
+
+echo "Done!"
+
 echo "PHP 7.0 FPM..."
 
 cp -f /vagrant/box/php7/settings/php-fpm.ini /etc/php/7.0/fpm/php.ini
