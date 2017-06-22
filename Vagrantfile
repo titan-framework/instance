@@ -14,6 +14,10 @@ end
 Vagrant.configure("2") do |config|
 
   config.vm.box = "debian/jessie64"
+  
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = true
+  end
 
   config.vm.network "forwarded_port", guest: 80, host: 8090
   config.vm.network "forwarded_port", guest: 8025, host: 8025
