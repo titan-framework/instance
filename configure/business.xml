@@ -4,6 +4,7 @@
 		label="Home | pt_BR: Página Inicial"
 		name="home"
 		component="global.home"
+		icon="home"
 		default="true"
 	/>
 	
@@ -11,12 +12,14 @@
 		label="Base of Files | pt_BR: Banco de Arquivos"
 		name="archive"
 		component="global.archive"
+		icon="files-o"
 	/>
 	
 	<section 
 		label="Access Control | pt_BR: Controle de Acesso"
 		name="access"
 		component="global.group"
+		icon="lock"
 		admin="true"
 	/>
 	
@@ -24,6 +27,7 @@
 		label="Managers Users | pt_BR: Usuários Gestores"
 		name="manager"
 		component="global.userPrivate"
+		icon="users"
 		father="access"
 	/>
 </section-mapping>

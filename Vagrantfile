@@ -1,5 +1,5 @@
 
-required_plugins = %w(vagrant-vbguest vagrant-timezone)
+required_plugins = %w(vagrant-vbguest vagrant-timezone vagrant-reload)
 
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
 if not plugins_to_install.empty?
@@ -13,7 +13,7 @@ end
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "debian/jessie64"
+  config.vm.box = "debian/stretch64"
   
   config.vm.provider :virtualbox do |vb|
     vb.gui = true
@@ -37,11 +37,8 @@ Vagrant.configure("2") do |config|
   if Vagrant.has_plugin?("vagrant-timezone")
     config.timezone.value = :host
   end
-  
-  # To activate...
-  # - PHP 7.0 with Nginx, use "box/php7/bootstrap.sh".
-  # - PHP 5.6 with Apache, use "box/php5/bootstrap.sh".
 
-  config.vm.provision "shell", path: "box/php7/bootstrap.sh"
-  # config.vm.provision "shell", path: "box/php5/bootstrap.sh"
+  config.vm.provision "shell", path: "box/bootstrap.sh"
+  
+  config.vm.provision :reload
 end
