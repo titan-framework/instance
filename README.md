@@ -3,31 +3,36 @@
 About
 -----
 
-Titan is a framework for instantiation of content management systems (CMS), allowing the creation of complex web applications. The **Titan Framework** proposal is to be a simple and complete development tool, allowing you to create robust applications quickly and easily.
+Titan is a framework for instantiation of content management systems (CMS) and backend (REST-Like API) to creation of complex web applications. The **Titan Framework** proposal is to be a simple and complete development tool, allowing you to create robust applications quickly and easily.
 
-Titan was developed and is maintained by the partnership between the [Software Engineering Laboratory (LEDES)](http://www.ledes.net) of the [Faculty of Computing (FACOM)](http://www.facom.ufms.br) of the [Federal University of Mato Grosso do Sul (UFMS)](http://www.ufms.br) and the [Laboratory for Precision Livestock, Environment and Software Engineering (PLEASE Lab)](http://please.cnpgc.embrapa.br) of the [Embrapa Beef Cattle](http://www.embrapa.br/gado-de-corte) of the [Brazilian Agricultural Research Corporation (Embrapa)](http://www.embrapa.br).
+Titan was developed and is maintained by the partnership between the [Software Engineering Laboratory (LEDES)](http://www.ledes.net) of the [Faculty of Computing (FACOM)](http://www.facom.ufms.br) of the [Federal University of Mato Grosso do Sul (UFMS)](https://www.ufms.br) and the [Laboratory for Precision Livestock, Environment and Software Engineering (PLEASE Lab)](https://please.cnpgc.embrapa.br) of the [Embrapa Beef Cattle](https://www.embrapa.br/gado-de-corte) of the [Brazilian Agricultural Research Corporation (Embrapa)](https://embrapa.br).
 
 Getting Started
 ---------------
 
-To create your project, use [Composer](http://getcomposer.org):
+To create your project, use [Composer](https://getcomposer.org):
 
 ```bash
 php composer.phar create-project titan-framework/instance path/to/local/folder
 ```
 
-After install, start Vagrant box to run your application:
+After install, start [Vagrant](https://vagrantup.com) box to run your application:
 
 ```bash
 cd path/to/local/folder
 vagrant up
 ```
 
-Your Titan instance is running at **http://localhost:8090**. To access, use "**admin**" as login and password.
+Or a [Docker](https://docker.com) container:
 
-All mail messages is getted by [MailHog](https://github.com/mailhog/MailHog), and you can access at **http://localhost:8025**.
+```bash
+cd path/to/local/folder
+docker-compose up -d
+```
 
-Now, you can modify the base-code to implement your requirements.
+In Vagrant (recomended to **development** environments) your Titan instance will running at **http://localhost:8090**. To access, use "**admin**" as login and password. You can access shell using SSH at localhost:2222. All e-mail messages is getted by [MailHog](https://github.com/mailhog/MailHog), and you can access at **http://localhost:8025**. Now, you can modify the base-code to implement your requirements.
+
+In Docker (recomended to **test**, **homologation** and **production** environments) edit ```docker-compose.yml``` file in root directory to set correct ports for your infrastructure.
 
 More Information
 ----------------
