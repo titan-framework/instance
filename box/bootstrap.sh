@@ -14,8 +14,7 @@ echo "Done!"
 echo "Updating, upgrading and dist upgrading..."
 
 apt-get -y update
-apt-get -y upgrade
-apt-get -y dist-upgrade
+DEBIAN_FRONTEND=noninteractive  apt-get -o Dpkg::Options::="--force-confold" -y upgrade
 
 echo "Done!"
 
@@ -24,7 +23,7 @@ echo "Install a lot of dependencies..."
 echo "postfix postfix/mailname string localhost" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y antiword aptitude build-essential bzip2 curl default-jdk git imagemagick libav-tools locales locate mailutils memcached nginx ntpdate php7.0-fpm php7.0-cli php7.0-curl php7.0-dev php7.0-gd php7.0-imagick php7.0-ldap php7.0-mbstring php7.0-mcrypt php7.0-memcached php7.0-pgsql php7.0-sqlite php-pear postfix postgresql-9.6 subversion xpdf-utils unzip vim
+DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-confold" -y antiword aptitude build-essential bzip2 curl default-jdk git imagemagick locales locate mailutils memcached nginx ntpdate php7.3-fpm php7.3-cli php7.3-curl php7.3-dev php7.3-gd php7.3-imagick php7.3-ldap php7.3-mbstring php7.3-memcached php7.3-pgsql php7.3-sqlite php-pear postfix subversion xpdf-utils unzip vim
 
 echo "Done!"
 
@@ -46,18 +45,6 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 echo "Done!"
 
-echo "Cleaning apt-get..."
-
-apt-get autoremove
-apt-get clean -y
-apt-get autoclean -y
-
-find /var/lib/apt -type f | xargs rm -f
-
-find /var/lib/doc -type f | xargs rm -f
-
-echo "Done!"
-
 echo "Creating folders to instance (file, backup and cache)..."
 
 mkdir -p /var/www/app/file
@@ -76,9 +63,13 @@ echo "Configuring services..."
 
 echo "PostgreSQL..."
 
-cp -f /vagrant/box/settings/pg_hba.conf /etc/postgresql/9.6/main/pg_hba.conf
+DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql-11
 
-cp -f /vagrant/box/settings/postgresql.conf /etc/postgresql/9.6/main/postgresql.conf
+pg_ctlcluster 11 main start
+
+cp -f /vagrant/box/settings/pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+
+cp -f /vagrant/box/settings/postgresql.conf /etc/postgresql/11/main/postgresql.conf
 
 /etc/init.d/postgresql restart
 
@@ -92,15 +83,15 @@ cp -f /vagrant/box/settings/memcached.conf /etc/memcached.conf
 
 echo "Done!"
 
-echo "PHP 7.0 FPM..."
+echo "PHP 7.3 FPM..."
 
-cp -f /vagrant/box/settings/php-fpm.ini /etc/php/7.0/fpm/php.ini
+cp -f /vagrant/box/settings/php-fpm.ini /etc/php/7.3/fpm/php.ini
 
-cp -f /vagrant/box/settings/php-cli.ini /etc/php/7.0/cli/php.ini
+cp -f /vagrant/box/settings/php-cli.ini /etc/php/7.3/cli/php.ini
 
-cp -f /vagrant/box/settings/php-www.conf /etc/php/7.0/fpm/pool.d/www.conf
+cp -f /vagrant/box/settings/php-www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-/etc/init.d/php7.0-fpm restart
+/etc/init.d/php7.3-fpm restart
 
 echo "Done!"
 
@@ -175,6 +166,18 @@ service mailhog start
 
 echo "Done!"
 
+echo "Cleaning apt-get..."
+
+apt-get autoremove
+apt-get clean -y
+apt-get autoclean -y
+
+find /var/lib/apt -type f | xargs rm -f
+
+find /var/lib/doc -type f | xargs rm -f
+
+echo "Done!"
+
 echo "Runnig 'updatedb' command (for locate)..."
 
 updatedb
@@ -195,11 +198,21 @@ echo "########## SUMMARY ############"
 
 echo "All done! See above for possible errors."
 
-echo "To access your new environment with Titan instance, use a SSH client to localhost:2222 with login 'root' and password 'vagrant'."
+echo ""
+
+echo "To access your new environment with Titan instance, use 'vagrant ssh' command or"
+
+echo "a SSH client to localhost:2222 with login 'root' and password 'vagrant'."
+
+echo ""
 
 echo "Titan instance is running at http://localhost:8090/ (the login and password is both 'admin')."
 
+echo ""
+
 echo "All e-mail messages are catched and can be accessed at http://localhost:8025/"
+
+echo ""
 
 echo "Thanks for using Titan Framework! Enjoy it ;-)"
 
