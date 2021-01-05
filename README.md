@@ -16,14 +16,17 @@ To create your project, use [Composer](https://getcomposer.org):
 php composer.phar create-project titan-framework/instance path/to/local/folder
 ```
 
-After install, start [Vagrant](https://vagrantup.com) box to run your application:
+After install, start [Vagrant](https://vagrantup.com) box to run your application. For this, install first [VirtualBox](https://www.virtualbox.org/wiki/Downloads) with it's Extension Pack.
+
+**Warning!** Since version 6.0, the VirtualBox Guest Additions does not works properly anymore. To fix this issue, has a script `vagrant.sh` that need to run before `vagrant up` command.
 
 ```bash
 cd path/to/local/folder
+./vagrant.sh
 vagrant up
 ```
 
-Or a [Docker](https://docker.com) container:
+Alternatively, you can run your application as a [Docker](https://docker.com) container:
 
 ```bash
 cd path/to/local/folder

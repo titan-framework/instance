@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -d ".vagrant" ]; then
+if [ -d ".vagrant/machines/default/virtualbox/id" ]; then
   echo "The Vagrant environment already exists!"
   echo "Run this script only to prepare Vagrant to first up."
   echo "Now, you can run 'vagrant up' to run VM."
