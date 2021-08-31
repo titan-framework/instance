@@ -1,5 +1,5 @@
 --
--- PostgreSQL database dump
+-- PostgreSQL database dump for initial Titan Framework instance.
 --
 
 SET statement_timeout = 0;
@@ -10638,7 +10638,7 @@ COPY _type_group (_type, _group) FROM stdin;
 --
 
 COPY _user (_id, _name, _login, _password, _active, _email, _deleted, _type, _language, _create_date, _update_date, _last_logon, _alert, _timezone, _google, _facebook, street, number, quarter, cep, city, state, phone, mobile, complement, msn, skype, photo, url, orkut, cpf, birth_date, gender, marriage) FROM stdin;
-1	Administrador	admin	d033e22ae348aeb5660fc2140aec35850c4da997	1		0	manager	pt_BR	2016-03-29 13:00:22.579003-04	2016-03-29 13:00:22.579003-04	2016-03-29 13:00:22.579003-04	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	_M_	_OTHER_
+1	Administrador	admin	d033e22ae348aeb5660fc2140aec35850c4da997	1	admin@titanframework.com	0	manager	pt_BR	2016-03-29 13:00:22.579003-04	2016-03-29 13:00:22.579003-04	2016-03-29 13:00:22.579003-04	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	_M_	_OTHER_
 \.
 
 

@@ -1,14 +1,72 @@
+# Development:
+# COMPOSE_PROJECT_NAME=instance_name_dev COMPOSE_PROFILES=development ENVIRONMENT=development PORT=8090 DB=5431 docker-compose up --build --force-recreate
+
+# Test:
+# COMPOSE_PROJECT_NAME=instance_name_test COMPOSE_PROFILES=test ENVIRONMENT=test PORT=8090 DB=5431 docker-compose up --build --force-recreate
+
+# Production:
+# COMPOSE_PROJECT_NAME=instance_name_prod COMPOSE_PROFILES=production ENVIRONMENT=production PORT=8090 DB=5431 docker-compose up --build --force-recreate
+
 version: '3'
+
 services:
-  instance:
-    image: carromeu/titan-framework
-    volumes:
-      - .:/var/www/app
-      - ./db:/var/lib/postgresql/db
-    entrypoint: /root/startup.sh
-    tty: true
-    stdin_open: true
+  web:
+    image: nginx:alpine
+    restart: always
     ports:
-      - 80:80
-      - 443:443
-      - 5432:5432
+      - "${PORT}:80"
+    volumes:
+      - .:/app
+      - ./docker/${ENVIRONMENT}/Nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./log/nginx:/var/log/nginx
+    links:
+      - php
+  
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/${ENVIRONMENT}/PHP/Dockerfile
+      args:
+        PHP_ENV: ${ENVIRONMENT}
+    volumes:
+      - .:/app
+      - /app/vendor
+      - ./log/mail:/var/log/maillog
+    links:
+      - db
+  
+  db:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - "${DB}:5432"
+    environment:
+      POSTGRES_DB: instance
+      POSTGRES_USER: titan
+      POSTGRES_PASSWORD: ${PG_PASS}
+    volumes:
+      - ./update/db:/docker-entrypoint-initdb.d
+  
+  backup:
+    image: postgres:alpine
+    volumes:
+      - ./db/backup:/backup
+    command: |
+      sh -c "PGPASSWORD=${PG_PASS} pg_dump -h db -U titan -Fp -O -x instance > /backup/${ENVIRONMENT}_$$(date +'%y-%m-%d_%H-%M-%S').sql"
+    links:
+      - db
+    profiles:
+      - tools
+  
+  mail:
+    image: mailhog/mailhog
+    restart: always
+    user: root
+    expose:
+      - 1025
+      - 8025
+    ports:
+      - 1025:1025
+      - 8025:8025
+    profiles:
+      - development

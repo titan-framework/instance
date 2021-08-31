@@ -16,11 +16,11 @@
 
 	<database
 		sgbd="PostgreSQL"
-		host="localhost"
+		host="db"
 		name="instance"
 		user="titan"
 		port="5432"
-		password=""
+		password="titan"
 		schema="titan"
 	/>
 

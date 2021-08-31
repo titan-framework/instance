@@ -1,6 +1,2 @@
-backup
-cache
-file
 vendor
-.vagrant
-vagrant.log
+.env
