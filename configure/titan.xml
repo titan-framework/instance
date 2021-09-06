@@ -9,7 +9,7 @@
 	cache-path="cache/"
 	doc-path="doc/"
 	debug-mode="true"
-	session="_PUT_A_RANDOM_HASH_HERE_"
+	session=""
 	language="pt_BR, en_US"
 	use-chat="false"
 	all-sections="true">
@@ -20,18 +20,18 @@
 		name="instance"
 		user="titan"
 		port="5432"
-		password="titan"
+		password=""
 		schema="titan"
 	/>
 
 	<security
 		xml-path="configure/security.xml"
-		hash="_PUT_A_RANDOM_HASH_HERE_"
+		hash=""
 		timeout="1800"
 	/>
 
 	<search
-		hash="_PUT_A_RANDOM_HASH_HERE_"
+		hash=""
 		timeout="15552000"
 	/>
 
@@ -98,7 +98,7 @@
 	/>
 
 	<schedule
-		hash="_PUT_A_RANDOM_HASH_HERE_AND_CHANGE_AT_CRON_CONFIG_"
+		hash=""
 	/>
 
 	<alert

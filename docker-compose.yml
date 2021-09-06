@@ -17,7 +17,7 @@ services:
       - "${PORT}:80"
     volumes:
       - .:/app
-      - ./docker/${ENVIRONMENT}/Nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/${ENVIRONMENT}/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./log/nginx:/var/log/nginx
     links:
       - php
@@ -25,7 +25,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: ./docker/${ENVIRONMENT}/PHP/Dockerfile
+      dockerfile: ./docker/${ENVIRONMENT}/php/Dockerfile
       args:
         PHP_ENV: ${ENVIRONMENT}
     volumes:

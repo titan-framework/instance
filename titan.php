@@ -41,7 +41,12 @@ if (!file_exists ($corePath .'switch.php'))
 if (file_exists ('composer.json'))
 {
 	if (file_exists ('vendor/autoload.php'))
+	{
 		require 'vendor/autoload.php';
+
+		$dotenv = new Dotenv\Dotenv(__DIR__);
+		$dotenv->load();
+	}
 	else
 	{
 		header ('HTTP/1.1 500 Internal Server Error');
