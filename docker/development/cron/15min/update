@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Uncoment to enable auto-update feature.
+# /usr/local/bin/php /titan/update/update.php /app/ >/app/log/titan-auto-update.log 2>>/app/log/titan-auto-update.log

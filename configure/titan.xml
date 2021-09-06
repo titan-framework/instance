@@ -98,7 +98,7 @@
 	/>
 
 	<schedule
-		hash=""
+		hash="_PUT_A_RANDOM_HASH_HERE_AND_CHANGE_AT_CRON_CONFIG_"
 	/>
 
 	<alert
