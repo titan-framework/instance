@@ -1,1 +1,0 @@
-Aug 31 19:22:40 host=mail tls=off auth=off from=dev@titanframework.com recipients=admin@titanframework.com mailsize=681 smtpstatus=250 smtpmsg='250 Ok: queued as CzGjJ_eRnv31zH14xoACFWlehpHNl-6A9W1vZU7p0qM=@mailhog.example' exitcode=EX_OK
