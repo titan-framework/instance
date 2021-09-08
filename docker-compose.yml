@@ -28,8 +28,11 @@ services:
       dockerfile: ./docker/${ENVIRONMENT}/php/Dockerfile
       args:
         PHP_ENV: ${ENVIRONMENT}
+    environment:
+      - TITAN_SCHEDULE_HASH
     volumes:
       - .:/app
+      - ../core:/titan2
       - /app/vendor
       - ./log/mail:/var/log/maillog
     links:
@@ -43,7 +46,7 @@ services:
     environment:
       POSTGRES_DB: instance
       POSTGRES_USER: titan
-      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_PASSWORD: ${TITAN_DB_PASSWORD}
     volumes:
       - ./update/db:/docker-entrypoint-initdb.d
   
@@ -52,7 +55,7 @@ services:
     volumes:
       - ./db/backup:/backup
     command: |
-      sh -c "PGPASSWORD=${PG_PASS} pg_dump -h db -U titan -Fp -O -x instance > /backup/${ENVIRONMENT}_$$(date +'%y-%m-%d_%H-%M-%S').sql"
+      sh -c "PGPASSWORD=${TITAN_DB_PASSWORD} pg_dump -h db -U titan -Fp -O -x instance > /backup/${ENVIRONMENT}_$$(date +'%y-%m-%d_%H-%M-%S').sql"
     links:
       - db
     profiles:
