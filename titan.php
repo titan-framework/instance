@@ -44,8 +44,9 @@ if (file_exists ('composer.json'))
 	{
 		require 'vendor/autoload.php';
 
-		$dotenv = new Dotenv\Dotenv(__DIR__);
-		$dotenv->load();
+		$dotenv = Dotenv\Dotenv::createMutable (__DIR__);
+		
+		$dotenv->load ();
 	}
 	else
 	{
