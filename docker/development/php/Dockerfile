@@ -10,15 +10,6 @@ COPY ./docker/${PHP_ENV}/php/opcache.ini $PHP_INI_DIR/conf.d/30-opcache.ini
 
 COPY ./docker/${PHP_ENV}/php/msmtprc /etc/msmtprc
 
-RUN mkdir -p /etc/periodic/minutely
-
-RUN echo "*	*	*	*	*	run-parts /etc/periodic/minutely" >> /var/spool/cron/crontabs/root
-
-COPY ./docker/${PHP_ENV}/cron/minutely/* /etc/periodic/minutely/
-COPY ./docker/${PHP_ENV}/cron/15min/* /etc/periodic/15min/
-COPY ./docker/${PHP_ENV}/cron/hourly/* /etc/periodic/hourly/
-COPY ./docker/${PHP_ENV}/cron/daily/* /etc/periodic/daily/
-
 WORKDIR /app
 
 COPY . /app
@@ -89,12 +80,7 @@ RUN set -ex \
     libtool \
     make \
     pcre-dev \
- && rm -rf /var/cache/apk/* \
- && chmod a+x /etc/periodic/minutely/* \
- && chmod a+x /etc/periodic/15min/* \
- && chmod a+x /etc/periodic/hourly/* \
- && chmod a+x /etc/periodic/daily/* \
- && crond
+ && rm -rf /var/cache/apk/*
 
 # Possible values for ext-name:
 # bcmath bz2 calendar ctype curl dba dom enchant exif ffi fileinfo filter ftp gd gettext gmp hash iconv imap intl json ldap mbstring mysqli oci8 odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix pspell readline reflection session shmop simplexml snmp soap sockets sodium spl standard sysvmsg sysvsem sysvshm tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zend_test zip

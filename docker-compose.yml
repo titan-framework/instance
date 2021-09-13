@@ -22,6 +22,21 @@ services:
     links:
       - php
   
+  cron:
+    build:
+      context: .
+      dockerfile: ./docker/${ENVIRONMENT}/cron/Dockerfile
+      args:
+        PHP_ENV: ${ENVIRONMENT}
+    environment:
+      - TITAN_DB_PASSWORD
+      - TITAN_SCHEDULE_HASH
+    volumes:
+      - .:/app
+      - /app/vendor
+    links:
+      - db
+  
   php:
     build:
       context: .
@@ -29,10 +44,13 @@ services:
       args:
         PHP_ENV: ${ENVIRONMENT}
     environment:
+      - TITAN_SESSION_NAME
+      - TITAN_DB_PASSWORD
+      - TITAN_SECURITY_HASH
+      - TITAN_SEARCH_HASH
       - TITAN_SCHEDULE_HASH
     volumes:
       - .:/app
-      - ../core:/titan2
       - /app/vendor
       - ./log/mail:/var/log/maillog
     links:

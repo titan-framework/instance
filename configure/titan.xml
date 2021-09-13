@@ -5,7 +5,7 @@
 	url="http://localhost:8090/"
 	e-mail="your@e-mail.com"
 	login-url="http://localhost:8090/titan.php?target=login"
-	core-path="../titan/"
+	core-path="/titan/"
 	cache-path="cache/"
 	doc-path="doc/"
 	debug-mode="true"

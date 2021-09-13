@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $(date) + "Hash: ${TITAN_SCHEDULE_HASH}" >> /tmp/cron_minutely_test.txt

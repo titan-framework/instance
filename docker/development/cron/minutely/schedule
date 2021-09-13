@@ -1,4 +1,2 @@
 #!/bin/sh
-echo $(date) + "Hash: ${TITAN_SCHEDULE_HASH}" >> /tmp/running.txt
-
 /usr/bin/wget --no-check-certificate "http://web/titan.php?target=schedule&hash=${TITAN_SCHEDULE_HASH}&job=minutely" -O /dev/null -o /dev/null
