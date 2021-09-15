@@ -54,11 +54,6 @@ RUN set -ex \
     openssh-client \
     wget \
     zlib-dev \
- && docker-php-ext-configure gd \
-    --with-freetype=/usr/lib/ \
-    --with-jpeg=/usr/lib/ \
-    --with-webp=/usr/lib/ \
-    --with-xpm=/usr/lib/ \
  && docker-php-ext-install \
     bz2 \
     curl \
@@ -68,6 +63,11 @@ RUN set -ex \
     pdo \
     pdo_pgsql \
     opcache \
+ && docker-php-ext-configure gd \
+    --with-freetype=/usr/lib/ \
+    --with-jpeg=/usr/lib/ \
+    --with-webp=/usr/lib/ \
+    --with-xpm=/usr/lib/ \
  && pecl install imagick mcrypt \
  && docker-php-ext-enable imagick mcrypt \
  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
