@@ -14,7 +14,7 @@ services:
     image: nginx:alpine
     restart: always
     ports:
-      - "${PORT}:80"
+      - ${PORT}:80
     volumes:
       - .:/app
       - ./docker/${ENVIRONMENT}/nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -60,7 +60,7 @@ services:
     image: postgres:alpine
     restart: always
     ports:
-      - "${DB}:5432"
+      - ${DB}:5432
     environment:
       POSTGRES_DB: instance
       POSTGRES_USER: titan
@@ -87,7 +87,6 @@ services:
       - 1025
       - 8025
     ports:
-      - 1025:1025
-      - 8025:8025
+      - ${MAIL_CATCHER}:8025
     profiles:
       - development
