@@ -9,4 +9,12 @@
 		gcm-api-key=""
 		send-alerts="true"
 	/>
+
+	<application
+		name="pwa"
+		auth="APP|USER-BY-MAIL"
+		token=""
+		protocol="Jwt"
+		register-as="manager"
+	/>
 </api-mapping>
