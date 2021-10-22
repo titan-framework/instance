@@ -15,6 +15,14 @@
 		auth="APP|USER-BY-MAIL"
 		token=""
 		protocol="Jwt"
-		register-as="manager"
-	/>
+		register-as="manager">
+		<endpoint method="GET" uri="\/status" />
+		<endpoint method="POST" uri="\/pin\/add" />
+		<endpoint method="POST" uri="\/pin\/del" />
+		<endpoint method="POST" uri="\/login" />
+		<endpoint method="GET" uri="\/user" />
+		<endpoint method="POST" uri="\/user" />
+		<endpoint method="DELETE" uri="\/user\/[0-9]+" />
+		<endpoint method="GET" uri="\/disambiguation" />
+	</application>
 </api-mapping>

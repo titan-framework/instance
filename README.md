@@ -10,39 +10,29 @@ Titan was developed and is maintained by the partnership between the [Software E
 Getting Started
 ---------------
 
-To create your project, use [Composer](https://getcomposer.org):
+To create your project, use [PHP Composer](https://getcomposer.org):
 
 ```bash
 php composer.phar create-project titan-framework/instance path/to/local/folder
 ```
 
-After install, start [Vagrant](https://vagrantup.com) box to run your application. For this, install first [VirtualBox](https://www.virtualbox.org/wiki/Downloads) with it's Extension Pack.
+Access the instance folder, copy the environment configuration files and change them at your convenience:
+- ```.env.example``` &raquo; ```.env```; and
+- ```.env.ci.example``` &raquo; ```.env.ci```.
 
-**Warning!** Since version 6.0, the VirtualBox Guest Additions does not works properly anymore. To fix this issue, has a script `vagrant.sh` that need to run before `vagrant up` command.
+Install [Docker](https://www.docker.com/). Then, run:
 
-```bash
-cd path/to/local/folder
-./vagrant.sh
-vagrant up
+```
+env $(cat .env.ci) docker-compose up --build --force-recreate
 ```
 
-Alternatively, you can run your application as a [Docker](https://docker.com) container:
+By default, your Titan instance will running at **http://localhost:8090**. To login, use "**admin**" as username and password.
 
-```bash
-cd path/to/local/folder
-docker-compose up -d
-```
+All e-mail messages is getted by [MailHog](https://github.com/mailhog/MailHog), and you can access at **http://localhost:8025**.
 
-In Vagrant (recomended to **development** environments) your Titan instance will running at **http://localhost:8090**. To access, use "**admin**" as login and password. You can access shell using SSH at localhost:2222. All e-mail messages is getted by [MailHog](https://github.com/mailhog/MailHog), and you can access at **http://localhost:8025**. Now, you can modify the base-code to implement your requirements.
-
-In Docker (recomended to **test**, **homologation** and **production** environments) edit ```docker-compose.yml``` file in root directory to set correct ports for your infrastructure.
+Now, you can modify the base-code to implement your requirements.
 
 More Information
 ----------------
 
 Read [official documentation](http://www.titanframework.com/docs/preface/) and [Titan Cookbook](https://github.com/titan-framework/docs/raw/master/Cookbook.pdf) (*in portuguese*) are the best ways to start using it. Access our [mailing list](https://groups.google.com/forum/#!forum/titan-framework) to learn advanced features and answer questions.
-
-Troubleshoot
-------------
-
-* If after "vagrant up" you receive a error of Titan's CORE not found, try pause your antvirus, destroy VM (with "vagrant destroy") and make up again (I had problems with Kaspersky).

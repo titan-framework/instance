@@ -1,3 +1,5 @@
 vendor
 .env
+.env.ci
+.env.backup
 log
